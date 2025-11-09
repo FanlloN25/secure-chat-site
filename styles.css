@@ -1,0 +1,409 @@
+/* Modern styling with parallax, gradients, and responsive design */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    color: #333;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    background-size: 50px 50px;
+    z-index: -1;
+    animation: parallax 20s linear infinite;
+}
+
+@keyframes parallax {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50px); }
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 300;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    background: #f8f9fa;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.modal-content button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#error-message {
+    color: #e74c3c;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#main-app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#profile-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+#profile-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #667eea;
+}
+
+#nickname {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+#edit-profile, #delete-account {
+    margin-left: auto;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#edit-profile:hover, #delete-account:hover {
+    transform: translateY(-1px);
+}
+
+#delete-account {
+    background: linear-gradient(45deg, #dc3545, #c82333);
+    margin-left: 10px;
+}
+
+#friends-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+#friends-section h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+#admin-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    backdrop-filter: blur(10px);
+}
+
+#admin-panel h3 {
+    margin-top: 0;
+    color: #e74c3c;
+}
+
+#admin-panel button {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.2s;
+}
+
+#admin-panel button:hover {
+    transform: translateY(-1px);
+}
+
+#admin-content {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+#add-friend-input {
+    width: calc(100% - 120px);
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin-right: 10px;
+}
+
+#add-friend-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#add-friend-btn:hover {
+    transform: translateY(-1px);
+}
+
+#friends-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#friends-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f8f9fa;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+#friends-list li:hover {
+    background: #e9ecef;
+}
+
+.friend-name {
+    font-weight: 500;
+}
+
+.call-btn {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    animation: fadeIn 0.25s ease-in-out;
+}
+
+.call-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+#call-interface {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+#current-call {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#call-with {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+#mute-btn, #hangup-btn {
+    background: linear-gradient(45deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: transform 0.2s;
+}
+
+#mute-btn:hover, #hangup-btn:hover {
+    transform: translateY(-1px);
+}
+
+#chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#chat-input {
+    width: calc(100% - 80px);
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin-right: 10px;
+}
+
+#send-chat {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#send-chat:hover {
+    transform: translateY(-1px);
+}
+
+.call-modal {
+    animation: ring 1s ease-in-out infinite;
+}
+
+@keyframes ring {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.call-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.accept-btn {
+    background: linear-gradient(45deg, #28a745, #20c997) !important;
+    padding: 15px 30px !important;
+    font-size: 18px !important;
+}
+
+.reject-btn {
+    background: linear-gradient(45deg, #dc3545, #c82333) !important;
+    padding: 15px 30px !important;
+    font-size: 18px !important;
+}
+
+.incoming-call-modal {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    #main-app {
+        padding: 10px;
+    }
+
+    #profile-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #edit-profile {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    #add-friend-input {
+        width: calc(100% - 100px);
+    }
+
+    #current-call {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #chat-input {
+        width: calc(100% - 70px);
+    }
+
+    .call-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
