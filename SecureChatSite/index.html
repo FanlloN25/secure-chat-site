@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Chat Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <h2>Enter Access Code</h2>
+            <input type="text" id="access-code" placeholder="Enter code..." maxlength="20">
+            <button id="submit-code">Submit</button>
+            <div id="error-message"></div>
+        </div>
+    </div>
+
+    <div id="main-app" class="hidden">
+        <div id="profile-section">
+            <div id="profile-info">
+                <img id="avatar" src="default-avatar.png" alt="Avatar">
+                <span id="nickname">Nickname</span>
+                <button id="edit-profile">Edit Profile</button>
+                <button id="delete-account">Delete Account</button>
+            </div>
+        </div>
+
+        <div id="friends-section">
+            <h3>Friends</h3>
+            <input type="text" id="add-friend-input" placeholder="Enter nickname to add">
+            <button id="add-friend-btn">Add Friend</button>
+            <ul id="friends-list"></ul>
+        </div>
+
+        <div id="call-section">
+            <div id="call-interface" class="hidden">
+                <div id="current-call">
+                    <span id="call-with">Calling with: <span id="call-nickname"></span></span>
+                    <button id="mute-btn">Mute</button>
+                    <button id="hangup-btn">Hang Up</button>
+                </div>
+                <div id="chat-messages"></div>
+                <input type="text" id="chat-input" placeholder="Type message...">
+                <button id="send-chat">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCr8RmhtxmXDGowrhKzfdNhGp_5oPbMBrE",
+            authDomain: "chatsite-c9f5a.firebaseapp.com",
+            projectId: "chatsite-c9f5a",
+            storageBucket: "chatsite-c9f5a.firebasestorage.app",
+            messagingSenderId: "715339621703",
+            appId: "1:715339621703:web:360bd7c4a9f346cff35862",
+            measurementId: "G-3J5L0GV0Z3"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Make Firebase functions globally available
+        window.firebaseAuth = {
+            createUserWithEmailAndPassword: firebase.auth().createUserWithEmailAndPassword,
+            signInWithEmailAndPassword: firebase.auth().signInWithEmailAndPassword,
+            signOut: firebase.auth().signOut,
+            onAuthStateChanged: firebase.auth().onAuthStateChanged
+        };
+
+        window.firebaseDB = {
+            doc: firebase.firestore().doc,
+            setDoc: (ref, data) => ref.set(data),
+            getDoc: (ref) => ref.get(),
+            updateDoc: (ref, data) => ref.update(data),
+            onSnapshot: (ref, callback) => ref.onSnapshot(callback),
+            collection: firebase.firestore().collection,
+            query: firebase.firestore().query,
+            where: firebase.firestore().where,
+            getDocs: (query) => query.get()
+        };
+
+        // Initialize Firebase Auth and DB
+        window.auth = firebase.auth();
+        window.db = firebase.firestore();
+
+        // Disable reCAPTCHA completely - remove problematic settings
+        // window.auth.settings = { appVerificationDisabledForTesting: true };
+
+        console.log('Firebase initialized successfully');
+    </script>
+
+    <script src="security.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
